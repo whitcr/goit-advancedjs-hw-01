@@ -29,7 +29,17 @@ if (storedData) {
 
 form.addEventListener('submit', function (event) {
   event.preventDefault();
-  localStorage.removeItem('feedback-form-state');
-  emailInput.value = '';
-  messageTextarea.value = '';
+
+  if (emailInput.value.trim() !== '' && messageTextarea.value.trim() !== '') {
+    const formData = {
+      email: emailInput.value,
+      message: messageTextarea.value,
+    };
+    console.log(formData);
+    localStorage.removeItem('feedback-form-state');
+    emailInput.value = '';
+    messageTextarea.value = '';
+  } else {
+    alert('Заповніть два поля форми');
+  }
 });
